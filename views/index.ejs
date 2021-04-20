@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <script src="https://kit.fontawesome.com/114b9a308b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>What Do You Need To Do Today?</h1>
+    <h2 class="daily">Daily Tasks:</h2>
+        <ul>
+            <% for(let i=0; i < info.length; i++) {%>
+                <li class='taskitem'>
+                    <% if(info[i].completed === true) {%>
+                    <span class="completed"><%= info[i].taskName %></span>
+                    <% }else{ %>
+                        <span><%= info[i].taskName %></span>
+                         <span><%= info[i].dueDate %></span>
+                    <% } %>
+                    <span  class="fas fa-dumpster del"></span>
+            <% } %>
+        </ul>
+    <h2 class="weekly">Weekly Tasks:</h2>
+        <ul>
+            <li class="weeklyitem"></li>
+        </ul>
+    <h2 class="longTerm">Long Term Tasks:</h2>
+        <ul>
+            <li class="longTermitem"></li>
+        </ul>
+    <h2 id="completed">Completed:</h2>
+    <h2>Things left to do: <%= left %></h2>
+    <form action="/addTask" method="POST">
+        <input type="text" placeholder="Task Name" name='taskName'>
+        <input type="date" placeholder="Due Date" name='dueDate'>
+        <select name="taskType" id="taskType" class="taskType">
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="longTerm">Long</option>
+        </select>
+        <input type="submit">
+    </form>
+
+    <script src='js/main.js'></script>
+</body>
+</html>
